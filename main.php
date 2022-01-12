@@ -35,4 +35,12 @@
     print_r( $get_position( EMPLOYEES ) );
     print_r( $get_name( EMPLOYEES ) );
 
+    const ALL_VOTES = [
+        'Harold', 'Harold', 'Jimmy', 'Nataly', 'Jimmy', 'Ash', 'Nataly', 'Jimmy', 'Jimmy', 'Nataly',
+    ];
+
+    $tally_votes = fn(array $votes) => array_reduce($votes, fn(array $carry, string $vote) => array_merge($carry, [$vote => ++$carry[$vote]]), []);
+
+    print_r($tally_votes(ALL_VOTES));
+
 ?>
