@@ -1,9 +1,7 @@
 <?php
 
     $map = function($func, $array) {
-        return array_reduce($array, function($carry, $item) use ($func) {
-            return array_merge($carry, [$func($item)]);  
-        }, []);
+        return array_reduce($array, fn($carry, $item) => array_merge($carry, [$func($item)]), []);
     };
 
     const EMPLOYEES = [
