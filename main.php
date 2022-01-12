@@ -27,5 +27,7 @@
         ],
     ];
 
-    print_r( $map( fn($item) => $item['position'], EMPLOYEES ) );
+    $get_position = fn($array) => $map(fn($item) => $item['position'], $array);
+
+    print_r( $get_position( EMPLOYEES ) );
 ?>
