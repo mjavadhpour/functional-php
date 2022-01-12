@@ -1,7 +1,7 @@
 <?php
 
-    $map = function($func, $array) {
-        return array_reduce($array, fn($carry, $item) => array_merge($carry, [$func($item)]), []);
+    $map = function(Closure $func, array $array): array {
+        return array_reduce($array, fn($carry, $item): array => array_merge($carry, [$func($item)]), []);
     };
 
     const EMPLOYEES = [
@@ -27,11 +27,12 @@
         ],
     ];
 
-    $get_partial = fn($index) => fn($array) => $map(fn($item) => $item[$index], $array);
+    $get_partial = fn(string $index): Closure => fn(array $array): array => $map(fn($item) => $item[$index], $array);
 
     $get_position = $get_partial('position');
     $get_name = $get_partial('name');
 
     print_r( $get_position( EMPLOYEES ) );
     print_r( $get_name( EMPLOYEES ) );
+
 ?>
